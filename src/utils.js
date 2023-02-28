@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 let fs = require('fs');
-
+const https = require('https');
 
 module.exports = {
     writeFile         : (absolutePath, str) => fs.writeFileSync(absolutePath, str),
@@ -23,4 +23,33 @@ module.exports = {
             client.user.setActivity(memberCount + ' utilisateurs', {type: 'WATCHING'});
         });
     },
+    get: (host, path) => {
+        return new Promise((resolve, reject) => {
+            const options = {
+                host,
+                path,
+                method: 'GET'
+            };
+            const req = https.request(options, (res) => {
+                if (res.statusCode < 200 || res.statusCode >= 300) {
+                    return reject(new Error('statusCode=' + res.statusCode));
+                }
+                let body = [];
+                res.on('data', (chunk) => body.push(chunk));
+                res.on('end', () => {
+                    try {
+                        body = JSON.parse(Buffer.concat(body).toString());
+                    } catch(e) {
+                        reject(e);
+                    }
+                    resolve(body);
+                });
+            });
+            req.on('error', (e) => {
+                reject(e.message);
+            });
+            // send the request
+            req.end();
+        });
+    }
 };

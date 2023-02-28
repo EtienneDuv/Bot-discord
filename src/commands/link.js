@@ -2,7 +2,7 @@ module.exports = (text) => {
     const firstWord = text.split(' ')[0];
     const mapping = {
         //UE FR YT channel
-        uefr: 'https://www.youtube.com/channel/UCVo4TMKRmdiMYHdMaPWbPNA',
+        yt: 'https://www.youtube.com/',
     };
 
     if (firstWord in mapping) return mapping[firstWord];

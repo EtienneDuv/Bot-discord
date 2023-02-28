@@ -6,7 +6,7 @@ module.exports = (msg) => {
 
     const rolls = [];
     for (let i = 0; i < amountOfDice; i++) {
-        const roll = Math.floor(Math.random() * dieSize);
+        const roll = (Math.random() * dieSize+1) << 0;
         rolls.push(roll);
     }
 
@@ -14,8 +14,8 @@ module.exports = (msg) => {
     
     return {
         embed: {
-            title      : `${text} - ${result}`,
-            description: `Rolls: ${rolls.join(', ')}`,
+            title      : result,
+            description: `${text}: \`${rolls.join(', ')}\``,
             color      : process.env.COLOR_EMBED_1,
             channel    : msg.channel
         }
