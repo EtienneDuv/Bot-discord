@@ -1,4 +1,4 @@
-const {get, tryToSend} = require('../utils');
+const {get, tryToSend, imperialToMetric} = require('../utils');
 const {dndApiUrl} = require('../constants/strings');
 const classLogo = require('../constants/classLogoUrl');
 
@@ -13,19 +13,14 @@ module.exports = async (msg) => {
   
     let res = await get(dndApiUrl, '/api/spells/' + spellName);
 
-    // name, desc, range, concentration, level, classes
-
-
     let thumbnailUrl = null;
-    if (res.classes.length === 1) {
-        thumbnailUrl = classLogo[res.classes[0].name];
-    }
+    if (res.classes.length === 1) thumbnailUrl = classLogo[res.classes[0].name];
     
     return tryToSend(msg.channel, {
         embed: {
             color      : process.env.COLOR_EMBED_1,
             title      : res.name,
-            description: res.desc[0],
+            description: imperialToMetric(res.desc[0]),
             url        : 'https://' + dndApiUrl + res.url,
             thumbnail  : {
                 url: thumbnailUrl
@@ -38,7 +33,7 @@ module.exports = async (msg) => {
                 },
                 {
                     name  : 'Range',
-                    value : res.range,
+                    value : imperialToMetric(res.range),
                     inline: true,
                 },
                 {

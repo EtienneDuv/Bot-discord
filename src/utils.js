@@ -51,5 +51,8 @@ module.exports = {
             // send the request
             req.end();
         });
-    }
+    },
+    imperialToMetric: (str) => str.replaceAll(/(?<number>\d+)[- ](?<unit>foot|feet)/ig, (_, number) => {
+        return `${Math.floor(number * 0.3048)}m`;
+    })
 };
