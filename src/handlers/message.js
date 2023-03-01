@@ -17,13 +17,16 @@ module.exports = (_client, msg) => {
     // ----------------------------------
     if (msg.channel.type === 'text' && msg.content[0] == '!') {
         const mapping = {
-            dice    : () => tryToSend(msg.channel, c.dice(msg)),
-            m       : () => c.monster(msg),
-            monsters: () => c.listMonsters(msg),
-            ms      : () => c.listMonsters(msg),
-            s       : () => c.spell(msg),
-            spells  : () => c.listSpells(msg),
-            ss      : () => c.listSpells(msg),
+            dice      : () => tryToSend(msg.channel, c.dice(msg)),
+            monsters  : () => c.listMonsters(msg),
+            ms        : () => c.listMonsters(msg),
+            m         : () => c.monster(msg),
+            magicitems: () => c.listMagicItems(msg),
+            mis       : () => c.listMagicItems(msg),
+            mi        : () => c.magicItem(msg),
+            spells    : () => c.listSpells(msg),
+            ss        : () => c.listSpells(msg),
+            s         : () => c.spell(msg),
 
             help: () => tryToSend(msg.channel, helperMessage),
             link: (text) => tryToSend(msg.channel, c.link(text)),

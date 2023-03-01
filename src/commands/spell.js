@@ -20,7 +20,7 @@ module.exports = async (msg) => {
         embed: {
             color      : process.env.COLOR_EMBED_1,
             title      : res.name,
-            description: imperialToMetric(res.desc[0]),
+            description: imperialToMetric(res.desc.join('\n')),
             url        : 'https://' + dndApiUrl + res.url,
             thumbnail  : {
                 url: thumbnailUrl

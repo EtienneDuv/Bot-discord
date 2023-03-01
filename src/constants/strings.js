@@ -6,11 +6,13 @@
 module.exports.helperMessage = {embed: {
     title      : 'All commands:',
     description: `
-      **\\_d\\_ / d_**: roll dice or only one if nothing is specified before \`d\` \n
-      **monsters / ms [args]**: list monsters. If args is a single letter, return monsters starting with the letter. If a word is specified, returns monsters having the word in their name.\n
-      **spells / ss [args]**: list spells. If args is a single letter, return spells starting with the letter. If a word is specified, returns spells having the word in their name.\n
-      **m [monster's name]**: return monster's information\n
-      **s [spell's name]**: return spell's information\n
+      **\\_d\\_ / d_**: roll dice or only one if nothing is specified before \`d\`
+      **monsters / ms [args]**: list monsters. If args is a single letter, return monsters starting with the letter. If a word is specified, returns monsters having the word in their name.
+      **spells / ss [args]**: list spells, same for args
+      **magicitems / mis [args]**: list magic items, same for args
+      **m [monster's name]**: return monster's information
+      **s [spell's name]**: return spell's information
+      **mi [item's name]**: return item's information
       `
 }};
 
